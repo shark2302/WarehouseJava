@@ -26,6 +26,10 @@ public class ProductService {
         return productRepository.findByUid(id);
     }
 
+    public List<Product> get(String name) {
+        return productRepository.findByName(name);
+    }
+
     public void delete(UUID id) {
         productRepository.delete(id);
     }

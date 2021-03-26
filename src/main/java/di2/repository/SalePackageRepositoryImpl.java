@@ -36,4 +36,14 @@ public class SalePackageRepositoryImpl implements SalePackageRepository{
     public SalePackage findByUid(UUID uid) {
         return salePackages.stream().filter( p -> Objects.equals(p.getUid(), uid)).findFirst().orElse(null);
     }
+
+    @Override
+    public void save(SalePackage salePackage) {
+        salePackages.add(salePackage);
+    }
+
+    @Override
+    public void delete(UUID id) {
+        salePackages.remove(findByUid(id));
+    }
 }

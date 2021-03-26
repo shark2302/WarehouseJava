@@ -4,6 +4,7 @@ import di2.component.DumbComponent;
 import di2.config.ApplicationConfig;
 import di2.controller.DumbController;
 import di2.controller.ProductController;
+import di2.controller.SalePackageController;
 import di2.model.Product;
 import di2.model.SalePackage;
 import di2.model.Store;
@@ -46,7 +47,9 @@ public class SampleApplication {
             System.out.println(p.toString());
         }*/
         ProductController pc = context.getBean(ProductController.class);
-        pc.runController();
+        SalePackageController spc = context.getBean(SalePackageController.class);
+        while(true)
+            spc.runController();
 
     }
 }
