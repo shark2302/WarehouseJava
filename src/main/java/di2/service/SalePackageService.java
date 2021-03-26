@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @Service
 public class SalePackageService {
+
     @Autowired
     private SalePackageRepository salePackageRepository;
 
