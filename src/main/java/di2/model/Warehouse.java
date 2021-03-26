@@ -61,6 +61,11 @@ public class Warehouse {
         store.setWarehouse(this);
     }
 
+    public void completeOrder(DeliveryOrder deliveryOrder) {
+        packages.removeAll(deliveryOrder.getSalePackages());
+        deliveryOrder.setDelivered(true);
+    }
+
     @Override
     public String toString() {
         return "Warehouse{" +

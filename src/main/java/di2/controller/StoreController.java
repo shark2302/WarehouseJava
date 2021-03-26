@@ -27,7 +27,7 @@ public class StoreController {
                 "1. Show all\n" +
                 "2. Add new\n" +
                 "3. Get\n" +
-                "3. Delete");
+                "4. Delete");
         int select = sc.nextInt();
         if (select == 1) {
             for (var store : storeService.listAll()) {
@@ -63,6 +63,9 @@ public class StoreController {
                 }
             }
             else if (num == 3) {
+                if(currentStore.getWarehouse() == null) {
+                    System.out.println("No warehouse for this store");
+                }
                 System.out.println("Select package to make order: ");
                 var packs = currentStore.getWarehouse().getPackages();
                 for (int i = 0; i < packs.size(); i++) {

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class StoreService {
@@ -32,4 +34,7 @@ public class StoreService {
         storeRepository.delete(id);
     }
 
+    public List<Store> getStoresWithoutWarehouse() {
+        return storeRepository.findAll().stream().filter(p -> p.getWarehouse() == null).collect(Collectors.toList());
+    }
 }

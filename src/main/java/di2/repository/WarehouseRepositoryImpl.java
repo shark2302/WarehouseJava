@@ -36,4 +36,14 @@ public class WarehouseRepositoryImpl implements WarehouseRepository{
     public Warehouse findByUid(UUID uid) {
         return data.stream().filter( p -> Objects.equals(p.getUid(), uid)).findFirst().orElse(null);
     }
+
+    @Override
+    public void save(Warehouse warehouse) {
+        data.add(warehouse);
+    }
+
+    @Override
+    public void delete(UUID uid) {
+        data.remove(findByUid(uid));
+    }
 }

@@ -2,10 +2,7 @@ package di2;
 
 import di2.component.DumbComponent;
 import di2.config.ApplicationConfig;
-import di2.controller.DumbController;
-import di2.controller.ProductController;
-import di2.controller.SalePackageController;
-import di2.controller.StoreController;
+import di2.controller.*;
 import di2.model.Product;
 import di2.model.SalePackage;
 import di2.model.Store;
@@ -21,38 +18,37 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import di2.service.SampleService;
 
+import java.util.Scanner;
+
 @Configuration
 @ComponentScan(/*basePackages = "di2"*/ basePackageClasses = {DumbService.class, ApplicationConfig.class,
         DumbComponent.class, ProductRepository.class, DumbController.class})
 public class SampleApplication {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(SampleApplication.class);
-        /*SampleService sampleService = context.getBean(SampleService.class);
-        sampleService.printHello("John");
-        ProductRepository productRepository = context.getBean(ProductRepository.class);
-        for (Product p: productRepository.findAll()) {
-            System.out.println(p.toString());
+        ProductController productController = context.getBean(ProductController.class);
+        SalePackageController salePackageController = context.getBean(SalePackageController.class);
+        StoreController storeController = context.getBean(StoreController.class);
+        WarehouseController warehouseController = context.getBean(WarehouseController.class);
+        Scanner scan = new Scanner(System.in);
+        while(true) {
+            System.out.println("Select controller to run :\n" +
+                    "1. Products\n" +
+                    "2. Packages\n" +
+                    "3. Stores\n" +
+                    "4. Warehouses\n" +
+                    "5. Stop app");
+            int select = scan.nextInt();
+            if(select == 1) {
+                 productController.runController();
+            } else if(select == 2) {
+                salePackageController.runController();
+            }else if (select == 3) {
+                storeController.runController();
+            }else if (select ==4) {
+                warehouseController.runController();
+            }else break;
         }
-        SalePackageRepository salePackageRepository = context.getBean(SalePackageRepository.class);
-        for (SalePackage sp: salePackageRepository.findAll()) {
-            System.out.println(sp.toString());
-        }
-
-        StoreRepository storeRepository = context.getBean(StoreRepository.class);
-        for (Store p: storeRepository.findAll()) {
-            System.out.println(p.toString());
-        }
-
-        WarehouseRepository warehouseRepository = context.getBean(WarehouseRepository.class);
-        for (Warehouse p: warehouseRepository.findAll()) {
-            System.out.println(p.toString());
-        }*/
-        ProductController pc = context.getBean(ProductController.class);
-        SalePackageController spc = context.getBean(SalePackageController.class);
-        WarehouseRepository warehouseRepository = context.getBean(WarehouseRepository.class);
-        StoreController sc = context.getBean(StoreController.class);
-        while(true)
-            sc.runController();
-
     }
+
 }

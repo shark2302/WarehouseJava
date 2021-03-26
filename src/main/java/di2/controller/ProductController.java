@@ -44,4 +44,5 @@ public class ProductController {
             productService.delete(products.get(choice).getUid());
         }
     }
+
 }
