@@ -66,15 +66,17 @@ public class StoreController {
                 if(currentStore.getWarehouse() == null) {
                     System.out.println("No warehouse for this store");
                 }
-                System.out.println("Select package to make order: ");
-                var packs = currentStore.getWarehouse().getPackages();
-                for (int i = 0; i < packs.size(); i++) {
-                    System.out.println(i + ". " + packs.get(i));
+                else {
+                    System.out.println("Select package to make order: ");
+                    var packs = currentStore.getWarehouse().getPackages();
+                    for (int i = 0; i < packs.size(); i++) {
+                        System.out.println(i + ". " + packs.get(i));
+                    }
+                    var packChoice = sc.nextInt();
+                    List<SalePackage> packsToDeliver = new ArrayList<>();
+                    packsToDeliver.add(packs.get(packChoice));
+                    deliveryOrderService.save(new DeliveryOrder(currentStore, currentStore.getWarehouse(), packsToDeliver));
                 }
-                var packChoice = sc.nextInt();
-                List<SalePackage> packsToDeliver = new ArrayList<>();
-                packsToDeliver.add(packs.get(packChoice));
-                deliveryOrderService.save(new DeliveryOrder(currentStore, currentStore.getWarehouse(), packsToDeliver));
             }
         }
     }

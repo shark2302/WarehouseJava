@@ -88,9 +88,7 @@ public class WarehouseController {
                     System.out.println(i + ". " + availibleStore.get(i));
                 }
                 var storeSelect = sc.nextInt();
-                //currentWarehouse.addServedStore(availibleStore.get(storeSelect));
-                currentWarehouse.getServedStores().add(availibleStore.get(storeSelect));
-                availibleStore.get(storeSelect).setWarehouse(currentWarehouse);
+                currentWarehouse.addServedStore(availibleStore.get(storeSelect));
             }
             else if (num == 5) {
                 System.out.println("Select package to add: ");
