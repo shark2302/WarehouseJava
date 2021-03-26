@@ -8,6 +8,8 @@ public class Store {
 
     private String name;
 
+    private Warehouse warehouse;
+
     public Store(String name) {
         this.name = name;
     }
@@ -18,6 +20,14 @@ public class Store {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 
     public UUID getUid() {

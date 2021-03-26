@@ -1,5 +1,7 @@
 package di2.model;
 
+import di2.service.StoreService;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -17,6 +19,9 @@ public class Warehouse {
         this.packages = packages;
         this.servedStores = servedStores;
         this.capacity = capacity;
+        for (var store: servedStores) {
+            store.setWarehouse(this);
+        }
     }
 
     public UUID getUid() {
@@ -49,6 +54,11 @@ public class Warehouse {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public void addServedStore(Store store) {
+        servedStores.add(store);
+        store.setWarehouse(this);
     }
 
     @Override

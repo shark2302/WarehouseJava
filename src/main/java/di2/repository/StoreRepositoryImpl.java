@@ -4,17 +4,20 @@ import di2.model.Product;
 import di2.model.Store;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import javax.annotation.PostConstruct;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
 public class StoreRepositoryImpl implements StoreRepository{
 
-    private List<Store> data = Arrays.asList(new Store("Magnit"),
-            new Store("Pyaterochka"));
+    private List<Store> data = new ArrayList<>();
+
+    @PostConstruct
+    private void init() {
+        data.add(new Store("Magnit"));
+        data.add(new Store("Pyaterochka"));
+    }
 
     @Override
     public List<Store> findAll() {
@@ -29,5 +32,15 @@ public class StoreRepositoryImpl implements StoreRepository{
     @Override
     public Store findByUid(UUID uid) {
         return data.stream().filter( p -> Objects.equals(p.getUid(), uid)).findFirst().orElse(null);
+    }
+
+    @Override
+    public void save(Store store) {
+        data.add(store);
+    }
+
+    @Override
+    public void delete(UUID uid) {
+        data.remove(findByUid(uid));
     }
 }

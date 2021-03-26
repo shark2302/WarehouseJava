@@ -13,4 +13,8 @@ public interface StoreRepository {
     List<Store> findByName(String name);
 
     Store findByUid(UUID uid);
+
+    void save(Store store);
+
+    void delete(UUID uid);
 }
