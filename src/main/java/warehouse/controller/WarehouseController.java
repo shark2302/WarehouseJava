@@ -1,6 +1,6 @@
 package warehouse.controller;
 
-import warehouse.model.Warehouse;
+import warehouse.dto.WarehouseDto;
 import warehouse.service.DeliveryOrderService;
 import warehouse.service.SalePackageService;
 import warehouse.service.StoreService;
@@ -41,7 +41,7 @@ public class WarehouseController {
         else if (select == 2) {
             System.out.println("Enter capacity of warehouse :");
             int capacity = sc.nextInt();
-            warehouseService.save(new Warehouse(salePackageService.listAll(), storeService.listAll(), capacity));
+            warehouseService.save(new WarehouseDto(salePackageService.listAll(), storeService.listAll(), capacity));
         }
         else if (select == 3) {
             System.out.println("Choose warehouse to get : ");

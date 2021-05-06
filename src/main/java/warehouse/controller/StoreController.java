@@ -1,8 +1,8 @@
 package warehouse.controller;
 
-import warehouse.model.DeliveryOrder;
-import warehouse.model.SalePackage;
-import warehouse.model.Store;
+import warehouse.dto.DeliveryOrderDto;
+import warehouse.dto.SalePackageDto;
+import warehouse.dto.StoreDto;
 import warehouse.service.DeliveryOrderService;
 import warehouse.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class StoreController {
         else if (select == 2) {
             System.out.println("Enter name of store :");
             String name = sc.next();
-            storeService.save(new Store(name));
+            storeService.save(new StoreDto(name));
         }
         else if (select == 3) {
             System.out.println("Choose store to get : ");
@@ -73,9 +73,9 @@ public class StoreController {
                         System.out.println(i + ". " + packs.get(i));
                     }
                     var packChoice = sc.nextInt();
-                    List<SalePackage> packsToDeliver = new ArrayList<>();
+                    List<SalePackageDto> packsToDeliver = new ArrayList<>();
                     packsToDeliver.add(packs.get(packChoice));
-                    deliveryOrderService.save(new DeliveryOrder(currentStore, currentStore.getWarehouse(), packsToDeliver));
+                    deliveryOrderService.save(new DeliveryOrderDto(currentStore, currentStore.getWarehouse(), packsToDeliver));
                 }
             }
         }

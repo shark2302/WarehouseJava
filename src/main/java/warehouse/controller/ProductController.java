@@ -1,6 +1,6 @@
 package warehouse.controller;
 
-import warehouse.model.Product;
+import warehouse.dto.ProductDto;
 import warehouse.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 @Controller
 public class ProductController {
-
+/*
     @Autowired
     private ProductService productService;
 
@@ -32,7 +32,7 @@ public class ProductController {
             double price = sc.nextDouble();
             System.out.println("Enter shelfLife: ");
             int shelfLife = sc.nextInt();
-            productService.save(new Product(name, price, shelfLife));
+            productService.save(new ProductDto(name, price, shelfLife));
         }
         if (select == 3) {
             var products = productService.listAll();
@@ -43,6 +43,6 @@ public class ProductController {
             int choice = sc.nextInt();
             productService.delete(products.get(choice).getUid());
         }
-    }
+    }*/
 
 }

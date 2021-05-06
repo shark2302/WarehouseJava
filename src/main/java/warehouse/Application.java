@@ -9,16 +9,17 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import warehouse.service.ProductService;
 
 import java.util.Scanner;
 
 @Configuration
 @ComponentScan(/*basePackages = "di2"*/ basePackageClasses = {DumbService.class, ApplicationConfig.class,
         DumbComponent.class, ProductRepository.class, DumbController.class})
-public class SampleApplication {
+public class Application {
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(SampleApplication.class);
-        ProductController productController = context.getBean(ProductController.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+       /* ProductController productController = context.getBean(ProductController.class);
         SalePackageController salePackageController = context.getBean(SalePackageController.class);
         StoreController storeController = context.getBean(StoreController.class);
         WarehouseController warehouseController = context.getBean(WarehouseController.class);
@@ -40,6 +41,12 @@ public class SampleApplication {
             }else if (select ==4) {
                 warehouseController.runController();
             }else break;
+        }*/
+        ProductService s = context.getBean(ProductService.class);
+        var i = s.get("Milk");
+        s.delete(1);
+        for (var p: s.listAll()) {
+            System.out.println(p);
         }
     }
 

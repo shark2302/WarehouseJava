@@ -1,7 +1,7 @@
 package warehouse.controller;
 
-import warehouse.model.Product;
-import warehouse.model.SalePackage;
+import warehouse.dto.ProductDto;
+import warehouse.dto.SalePackageDto;
 import warehouse.service.ProductService;
 import warehouse.service.SalePackageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +38,9 @@ public class SalePackageController {
             var product = productService.get(name).get(0);
             System.out.println("Enter count: ");
             int count = sc.nextInt();
-            Product[] productArr = new Product[count];
-            Arrays.fill(productArr, product);
-            salePackageService.save(new SalePackage((new Date()).getDay(), Arrays.asList(productArr)));
+            ProductDto[] productDtoArr = new ProductDto[count];
+            Arrays.fill(productDtoArr, product);
+            salePackageService.save(new SalePackageDto((new Date()).getDay(), Arrays.asList(productDtoArr)));
         }
         if (select == 3) {
             var salePackages = salePackageService.listAll();

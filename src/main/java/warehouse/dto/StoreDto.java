@@ -1,16 +1,16 @@
-package warehouse.model;
+package warehouse.dto;
 
 import java.util.UUID;
 
-public class Store {
+public class StoreDto {
 
     private UUID uid = UUID.randomUUID();
 
     private String name;
 
-    private Warehouse warehouse;
+    private WarehouseDto warehouseDto;
 
-    public Store(String name) {
+    public StoreDto(String name) {
         this.name = name;
     }
 
@@ -22,12 +22,12 @@ public class Store {
         this.name = name;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
+    public WarehouseDto getWarehouse() {
+        return warehouseDto;
     }
 
-    public void setWarehouse(Warehouse warehouse) {
-        this.warehouse = warehouse;
+    public void setWarehouse(WarehouseDto warehouseDto) {
+        this.warehouseDto = warehouseDto;
     }
 
     public UUID getUid() {

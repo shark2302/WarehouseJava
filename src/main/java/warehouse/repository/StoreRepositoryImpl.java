@@ -1,6 +1,6 @@
 package warehouse.repository;
 
-import warehouse.model.Store;
+import warehouse.dto.StoreDto;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -10,32 +10,32 @@ import java.util.stream.Collectors;
 @Repository
 public class StoreRepositoryImpl implements StoreRepository{
 
-    private List<Store> data = new ArrayList<>();
+    private List<StoreDto> data = new ArrayList<>();
 
     @PostConstruct
     private void init() {
-        data.add(new Store("Magnit"));
-        data.add(new Store("Pyaterochka"));
+        data.add(new StoreDto("Magnit"));
+        data.add(new StoreDto("Pyaterochka"));
     }
 
     @Override
-    public List<Store> findAll() {
+    public List<StoreDto> findAll() {
         return data;
     }
 
     @Override
-    public List<Store> findByName(String name) {
+    public List<StoreDto> findByName(String name) {
         return data.stream().filter( p -> Objects.equals(p.getName(), name)).collect(Collectors.toList());
     }
 
     @Override
-    public Store findByUid(UUID uid) {
+    public StoreDto findByUid(UUID uid) {
         return data.stream().filter( p -> Objects.equals(p.getUid(), uid)).findFirst().orElse(null);
     }
 
     @Override
-    public void save(Store store) {
-        data.add(store);
+    public void save(StoreDto storeDto) {
+        data.add(storeDto);
     }
 
     @Override

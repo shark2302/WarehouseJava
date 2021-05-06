@@ -1,7 +1,7 @@
 package warehouse.repository;
 
-import warehouse.model.Product;
-import warehouse.model.SalePackage;
+import warehouse.dto.ProductDto;
+import warehouse.dto.SalePackageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,7 @@ import java.util.*;
 
 @Repository
 public class SalePackageRepositoryImpl implements SalePackageRepository{
-    private List<SalePackage> salePackages = new ArrayList<>();
+    private List<SalePackageDto> salePackageDtos = new ArrayList<>();
 
     @Autowired
     private ProductRepository productRepository;
@@ -19,31 +19,31 @@ public class SalePackageRepositoryImpl implements SalePackageRepository{
     private void init() {
         Random r = new Random();
         int[] sizes = new int[]{16,32,64,128};
-        List<Product> products = productRepository.findAll();
-        for (int i = 0; i < products.size(); i++) {
-            Product[] arr = new Product[sizes[r.nextInt(sizes.length)]];
-            Arrays.fill(arr, products.get(i));
-            salePackages.add(new SalePackage(0, Arrays.asList(arr)));
-        }
+        //List<ProductDto> productDtos = productRepository.findAll();
+        /*for (int i = 0; i < productDtos.size(); i++) {
+            ProductDto[] arr = new ProductDto[sizes[r.nextInt(sizes.length)]];
+            Arrays.fill(arr, productDtos.get(i));
+            salePackageDtos.add(new SalePackageDto(0, Arrays.asList(arr)));
+        }*/
     }
 
     @Override
-    public List<SalePackage> findAll() {
-        return salePackages;
+    public List<SalePackageDto> findAll() {
+        return salePackageDtos;
     }
 
     @Override
-    public SalePackage findByUid(UUID uid) {
-        return salePackages.stream().filter( p -> Objects.equals(p.getUid(), uid)).findFirst().orElse(null);
+    public SalePackageDto findByUid(UUID uid) {
+        return salePackageDtos.stream().filter(p -> Objects.equals(p.getUid(), uid)).findFirst().orElse(null);
     }
 
     @Override
-    public void save(SalePackage salePackage) {
-        salePackages.add(salePackage);
+    public void save(SalePackageDto salePackageDto) {
+        salePackageDtos.add(salePackageDto);
     }
 
     @Override
     public void delete(UUID id) {
-        salePackages.remove(findByUid(id));
+        salePackageDtos.remove(findByUid(id));
     }
 }

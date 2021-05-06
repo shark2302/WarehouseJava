@@ -1,6 +1,6 @@
 package warehouse.repository;
 
-import warehouse.model.DeliveryOrder;
+import warehouse.dto.DeliveryOrderDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -12,41 +12,41 @@ import java.util.stream.Collectors;
 @Repository
 public class DeliveryOrderRepositoryImpl implements DeliveryOrderRepository{
 
-    private List<DeliveryOrder> data = new ArrayList<>();
+    private List<DeliveryOrderDto> data = new ArrayList<>();
 
     @Override
-    public List<DeliveryOrder> findAll() {
+    public List<DeliveryOrderDto> findAll() {
         return data;
     }
 
     @Override
-    public List<DeliveryOrder> findByWarehouseId(UUID id) {
+    public List<DeliveryOrderDto> findByWarehouseId(UUID id) {
         return data.stream().filter( p -> Objects.equals(p.getWarehouse().getUid(), id)).collect(Collectors.toList());
     }
 
     @Override
-    public List<DeliveryOrder> findByStoreId(UUID id) {
+    public List<DeliveryOrderDto> findByStoreId(UUID id) {
         return data.stream().filter( p -> Objects.equals(p.getStore().getUid(), id)).collect(Collectors.toList());
     }
 
     @Override
-    public List<DeliveryOrder> findDelivered() {
-        return data.stream().filter(DeliveryOrder::isDelivered).collect(Collectors.toList());
+    public List<DeliveryOrderDto> findDelivered() {
+        return data.stream().filter(DeliveryOrderDto::isDelivered).collect(Collectors.toList());
     }
 
     @Override
-    public List<DeliveryOrder> findNotDelivered() {
+    public List<DeliveryOrderDto> findNotDelivered() {
         return data.stream().filter(p -> !p.isDelivered()).collect(Collectors.toList());
     }
 
     @Override
-    public DeliveryOrder findById(UUID id) {
+    public DeliveryOrderDto findById(UUID id) {
         return data.stream().filter( p -> Objects.equals(p.getUid(), id)).findFirst().orElse(null);
     }
 
     @Override
-    public void save(DeliveryOrder deliveryOrder) {
-        data.add(deliveryOrder);
+    public void save(DeliveryOrderDto deliveryOrderDto) {
+        data.add(deliveryOrderDto);
     }
 
     @Override

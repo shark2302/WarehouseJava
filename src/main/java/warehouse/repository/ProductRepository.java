@@ -1,20 +1,12 @@
 package warehouse.repository;
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import warehouse.model.Product;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface ProductRepository {
-
-    List<Product> findAll();
-
+@Repository
+public interface ProductRepository extends CrudRepository<Product, Integer> {
     List<Product> findByName(String name);
-
-    Product findByUid(UUID uid);
-
-    void save(Product product);
-
-    void delete(UUID uid);
-
 }

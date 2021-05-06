@@ -1,6 +1,6 @@
 package warehouse.service;
 
-import warehouse.model.SalePackage;
+import warehouse.dto.SalePackageDto;
 import warehouse.repository.SalePackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ public class SalePackageService {
     @Autowired
     private SalePackageRepository salePackageRepository;
 
-    public void save(SalePackage salePackage) {
-        salePackageRepository.save(salePackage);
+    public void save(SalePackageDto salePackageDto) {
+        salePackageRepository.save(salePackageDto);
     }
 
-    public List<SalePackage> listAll() {
+    public List<SalePackageDto> listAll() {
         return salePackageRepository.findAll();
     }
 
-    public SalePackage get(UUID id) {
+    public SalePackageDto get(UUID id) {
         return salePackageRepository.findByUid(id);
     }
 

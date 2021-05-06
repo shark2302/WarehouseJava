@@ -1,19 +1,19 @@
-package warehouse.model;
+package warehouse.dto;
 
 import java.util.List;
 import java.util.UUID;
 
-public class SalePackage {
+public class SalePackageDto {
 
     private UUID uid = UUID.randomUUID();
 
     private Integer createDate;
 
-    private List<Product> products;
+    private List<ProductDto> productDtos;
 
-    public SalePackage(Integer createDate, List<Product> products) {
+    public SalePackageDto(Integer createDate, List<ProductDto> productDtos) {
         this.createDate = createDate;
-        this.products = products;
+        this.productDtos = productDtos;
     }
 
     public Integer getCreateDate() {
@@ -24,12 +24,12 @@ public class SalePackage {
         this.createDate = createDate;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<ProductDto> getProducts() {
+        return productDtos;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProducts(List<ProductDto> productDtos) {
+        this.productDtos = productDtos;
     }
 
     public UUID getUid() {
@@ -45,8 +45,8 @@ public class SalePackage {
         return "SalePackage{" +
                 "uid=" + uid +
                 ", createDate=" + createDate +
-                ", product=" + products.get(0).getName() +
-                ", productsCount=" + products.size() +
+                ", product=" + productDtos.get(0).getName() +
+                ", productsCount=" + productDtos.size() +
                 '}';
     }
 }

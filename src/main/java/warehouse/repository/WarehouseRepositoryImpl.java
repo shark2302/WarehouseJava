@@ -1,6 +1,6 @@
 package warehouse.repository;
 
-import warehouse.model.Warehouse;
+import warehouse.dto.WarehouseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +10,7 @@ import java.util.*;
 @Repository
 public class WarehouseRepositoryImpl implements WarehouseRepository{
 
-    private List<Warehouse> data = new ArrayList<>();
+    private List<WarehouseDto> data = new ArrayList<>();
 
     @Autowired
     private StoreRepository storeRepository;
@@ -20,23 +20,23 @@ public class WarehouseRepositoryImpl implements WarehouseRepository{
 
     @PostConstruct
     private void init() {
-        data.add(new Warehouse(salePackageRepository.findAll(), storeRepository.findAll(), 16));
+        data.add(new WarehouseDto(salePackageRepository.findAll(), storeRepository.findAll(), 16));
     }
 
 
     @Override
-    public List<Warehouse> findAll() {
+    public List<WarehouseDto> findAll() {
         return data;
     }
 
     @Override
-    public Warehouse findByUid(UUID uid) {
+    public WarehouseDto findByUid(UUID uid) {
         return data.stream().filter( p -> Objects.equals(p.getUid(), uid)).findFirst().orElse(null);
     }
 
     @Override
-    public void save(Warehouse warehouse) {
-        data.add(warehouse);
+    public void save(WarehouseDto warehouseDto) {
+        data.add(warehouseDto);
     }
 
     @Override

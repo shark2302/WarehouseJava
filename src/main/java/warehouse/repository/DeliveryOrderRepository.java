@@ -1,6 +1,6 @@
 package warehouse.repository;
 
-import warehouse.model.DeliveryOrder;
+import warehouse.dto.DeliveryOrderDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -8,19 +8,19 @@ import java.util.UUID;
 
 public interface DeliveryOrderRepository {
 
-    List<DeliveryOrder> findAll();
+    List<DeliveryOrderDto> findAll();
 
-    List<DeliveryOrder> findByWarehouseId(UUID id);
+    List<DeliveryOrderDto> findByWarehouseId(UUID id);
 
-    List<DeliveryOrder> findByStoreId(UUID id);
+    List<DeliveryOrderDto> findByStoreId(UUID id);
 
-    List<DeliveryOrder> findDelivered();
+    List<DeliveryOrderDto> findDelivered();
 
-    List<DeliveryOrder> findNotDelivered();
+    List<DeliveryOrderDto> findNotDelivered();
 
-    DeliveryOrder findById(UUID id);
+    DeliveryOrderDto findById(UUID id);
 
-    void save(DeliveryOrder deliveryOrder);
+    void save(DeliveryOrderDto deliveryOrderDto);
 
     void delete(UUID id);
 }

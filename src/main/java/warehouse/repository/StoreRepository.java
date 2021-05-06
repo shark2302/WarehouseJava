@@ -1,19 +1,19 @@
 package warehouse.repository;
 
-import warehouse.model.Store;
+import warehouse.dto.StoreDto;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface StoreRepository {
 
-    List<Store> findAll();
+    List<StoreDto> findAll();
 
-    List<Store> findByName(String name);
+    List<StoreDto> findByName(String name);
 
-    Store findByUid(UUID uid);
+    StoreDto findByUid(UUID uid);
 
-    void save(Store store);
+    void save(StoreDto storeDto);
 
     void delete(UUID uid);
 }

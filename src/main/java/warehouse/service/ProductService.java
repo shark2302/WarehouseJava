@@ -1,11 +1,14 @@
 package warehouse.service;
 
-import warehouse.model.Product;
-import warehouse.repository.ProductRepository;
+import warehouse.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import warehouse.model.Product;
+import warehouse.repository.ProductRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -14,24 +17,35 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public void save(Product product) {
-        productRepository.save(product);
+    public void save(ProductDto productDto) {
+
+        productRepository.save(new Product(productDto.getName(), productDto.getPrice(), productDto.getShelfLife()));
     }
 
-    public List<Product> listAll() {
-        return productRepository.findAll();
+    public List<ProductDto> listAll() {
+        List<ProductDto> result = new ArrayList<>();
+        for (var p: productRepository.findAll()){
+            result.add(new ProductDto(p.getName(), p.getPrice(), p.getShelfLife()));
+        }
+        return result;
     }
 
-    public Product get(UUID id) {
-        return productRepository.findByUid(id);
+    public ProductDto get(Integer id) {
+        Optional<Product> productOptional = productRepository.findById(id);
+
+        return productOptional.map(ProductDto::new).orElse(null);
     }
 
-    public List<Product> get(String name) {
-        return productRepository.findByName(name);
+    public List<ProductDto> get(String name) {
+        List<ProductDto> result = new ArrayList<>();
+        for (var p: productRepository.findByName(name)){
+            result.add(new ProductDto(p.getName(), p.getPrice(), p.getShelfLife()));
+        }
+        return result;
     }
 
-    public void delete(UUID id) {
-        productRepository.delete(id);
+    public void delete(Integer id) {
+        productRepository.deleteById(id);
     }
 
 }

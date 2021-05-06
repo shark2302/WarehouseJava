@@ -1,6 +1,6 @@
 package warehouse.service;
 
-import warehouse.model.Warehouse;
+import warehouse.dto.WarehouseDto;
 import warehouse.repository.WarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ public class WarehouseService {
     @Autowired
     private WarehouseRepository warehouseRepository;
 
-    public void save(Warehouse warehouse) {
-        warehouseRepository.save(warehouse);
+    public void save(WarehouseDto warehouseDto) {
+        warehouseRepository.save(warehouseDto);
     }
 
-    public List<Warehouse> listAll() {
+    public List<WarehouseDto> listAll() {
         return warehouseRepository.findAll();
     }
 
-    public Warehouse get(UUID id) {
+    public WarehouseDto get(UUID id) {
         return warehouseRepository.findByUid(id);
     }
 

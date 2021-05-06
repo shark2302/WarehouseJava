@@ -1,22 +1,39 @@
 package warehouse.model;
 
-import java.util.Objects;
-import java.util.UUID;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "products")
 public class Product {
 
-    private UUID uid = UUID.randomUUID();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "price")
     private Double price;
 
+    @Column(name = "shelf_life")
     private Integer shelfLife;
+
+    public Product() {
+    }
 
     public Product(String name, Double price, Integer shelfLife) {
         this.name = name;
         this.price = price;
         this.shelfLife = shelfLife;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -43,31 +60,10 @@ public class Product {
         this.shelfLife = shelfLife;
     }
 
-    public UUID getUid() {
-        return uid;
-    }
-
-    public void setUid(UUID uid) {
-        this.uid = uid;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(uid, product.uid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uid);
-    }
-
     @Override
     public String toString() {
         return "Product{" +
-                "uid=" + uid +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", shelfLife=" + shelfLife +
