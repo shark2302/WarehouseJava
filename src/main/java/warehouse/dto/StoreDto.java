@@ -4,14 +4,13 @@ import java.util.UUID;
 
 public class StoreDto {
 
-    private UUID uid = UUID.randomUUID();
-
     private String name;
 
     private WarehouseDto warehouseDto;
 
-    public StoreDto(String name) {
+    public StoreDto(String name, WarehouseDto warehouseDto) {
         this.name = name;
+        this.warehouseDto = warehouseDto;
     }
 
     public String getName() {
@@ -30,19 +29,12 @@ public class StoreDto {
         this.warehouseDto = warehouseDto;
     }
 
-    public UUID getUid() {
-        return uid;
-    }
-
-    public void setUid(UUID uid) {
-        this.uid = uid;
-    }
 
     @Override
     public String toString() {
         return "Store{" +
-                "uid=" + uid +
                 ", name='" + name + '\'' +
+                ", warehouse=" + warehouseDto.getName() +
                 '}';
     }
 }

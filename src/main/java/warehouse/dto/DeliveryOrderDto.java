@@ -5,8 +5,6 @@ import java.util.UUID;
 
 public class DeliveryOrderDto {
 
-    private UUID uid = UUID.randomUUID();
-
     private StoreDto storeDto;
 
     private WarehouseDto warehouseDto;
@@ -53,14 +51,6 @@ public class DeliveryOrderDto {
 
     public void setDelivered(boolean delivered) {
         this.delivered = delivered;
-    }
-
-    public UUID getUid() {
-        return uid;
-    }
-
-    public void setUid(UUID uid) {
-        this.uid = uid;
     }
 
     @Override

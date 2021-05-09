@@ -51,7 +51,7 @@ public class WarehouseService {
         return whOptional.map(WarehouseDto::new).orElse(null);
     }
 
-    public void delete(Integer id) {
+    public void deleteWarehouse(Integer id) {
         warehouseRepository.deleteById(id);
     }
 
@@ -68,5 +68,24 @@ public class WarehouseService {
         }
     }
 
+    public List<SalePackageDto> listAllSalePackages() {
+        List<SalePackageDto> res = new ArrayList<>();
+
+        for (var sp: salePackageRepository.findAll()) {
+            res.add(new SalePackageDto(sp));
+        }
+        return res;
+    }
+
+    public SalePackageDto getSalePackage(Integer id) {
+
+        Optional<SalePackage> spOptional = salePackageRepository.findById(id);
+
+        return spOptional.map(SalePackageDto::new).orElse(null);
+    }
+
+    public void deleteSalePackage(Integer id) {
+        salePackageRepository.deleteById(id);
+    }
 
 }
