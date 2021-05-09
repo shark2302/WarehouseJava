@@ -80,16 +80,6 @@ public class WarehouseDto {
         this.capacity = capacity;
     }
 
-    public void addServedStore(StoreDto storeDto) {
-        servedStoreDtos.add(storeDto);
-        storeDto.setWarehouse(this);
-    }
-
-    public void completeOrder(DeliveryOrderDto deliveryOrderDto) {
-        packages.removeAll(deliveryOrderDto.getSalePackages());
-        deliveryOrderDto.setDelivered(true);
-    }
-
     @Override
     public String toString() {
         return "WarehouseDto{" +

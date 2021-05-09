@@ -1,5 +1,7 @@
 package warehouse.dto;
 
+import warehouse.model.DeliveryOrder;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -7,17 +9,23 @@ public class DeliveryOrderDto {
 
     private StoreDto storeDto;
 
-    private WarehouseDto warehouseDto;
-
-    private List<SalePackageDto> salePackageDtos;
+    public WarehouseDto warehouseDto;
+    private SalePackageDto salePackageDto;
 
     private boolean delivered;
 
 
-    public DeliveryOrderDto(StoreDto storeDto, WarehouseDto warehouseDto, List<SalePackageDto> salePackageDtos) {
+    public DeliveryOrderDto(StoreDto storeDto, SalePackageDto salePackageDto) {
         this.storeDto = storeDto;
-        this.warehouseDto = warehouseDto;
-        this.salePackageDtos = salePackageDtos;
+        this.salePackageDto = salePackageDto;
+        this.warehouseDto = storeDto.getWarehouse();
+        delivered = false;
+    }
+
+    public DeliveryOrderDto(DeliveryOrder order) {
+        this.storeDto = new StoreDto(order.getStore());
+        this.salePackageDto = new SalePackageDto(order.getSalePackage());
+        this.warehouseDto = storeDto.getWarehouse();
         delivered = false;
     }
 
@@ -29,20 +37,16 @@ public class DeliveryOrderDto {
         this.storeDto = storeDto;
     }
 
-    public WarehouseDto getWarehouse() {
-        return warehouseDto;
-    }
-
     public void setWarehouse(WarehouseDto warehouseDto) {
         this.warehouseDto = warehouseDto;
     }
 
-    public List<SalePackageDto> getSalePackages() {
-        return salePackageDtos;
+    public SalePackageDto getSalePackageDto() {
+        return salePackageDto;
     }
 
-    public void setSalePackages(List<SalePackageDto> salePackageDtos) {
-        this.salePackageDtos = salePackageDtos;
+    public void setSalePackageDto(SalePackageDto salePackageDto) {
+        this.salePackageDto = salePackageDto;
     }
 
     public boolean isDelivered() {
@@ -57,7 +61,7 @@ public class DeliveryOrderDto {
     public String toString() {
         return "DeliveryOrder{" +
                 "store=" + storeDto.getName() +
-                ", salePackages=" + salePackageDtos +
+                ", salePackage=" + salePackageDto +
                 '}';
     }
 }

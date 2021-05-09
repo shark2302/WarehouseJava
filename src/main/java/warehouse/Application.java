@@ -20,6 +20,10 @@ public class Application {
         //sp.save(new SalePackageDto(10, new ProductDto("Apple", 2d, 30), 30));
         WarehouseService ws = context.getBean(WarehouseService.class);
         StoreService ss = context.getBean(StoreService.class);
+
+        for (var d: ss.getAllDeliveryOrdersForStore("Store1")) {
+            System.out.println(d);
+        }
     }
 
 }
