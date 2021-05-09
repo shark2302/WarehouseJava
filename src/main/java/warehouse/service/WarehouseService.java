@@ -1,11 +1,13 @@
 package warehouse.service;
 
+import warehouse.dto.DeliveryOrderDto;
 import warehouse.dto.SalePackageDto;
 import warehouse.dto.WarehouseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import warehouse.model.SalePackage;
 import warehouse.model.Warehouse;
+import warehouse.repository.OrdersRepository;
 import warehouse.repository.ProductRepository;
 import warehouse.repository.SalePackageRepository;
 import warehouse.repository.WarehouseRepository;
@@ -28,6 +30,9 @@ public class WarehouseService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrdersRepository ordersRepository;
 
     public void save(WarehouseDto warehouseDto) {
 
@@ -86,6 +91,33 @@ public class WarehouseService {
 
     public void deleteSalePackage(Integer id) {
         salePackageRepository.deleteById(id);
+    }
+
+
+    public void deliverOrder(Integer orderId) {
+        var orderOp = ordersRepository.findById(orderId);
+
+        if(orderOp.isPresent()) {
+            var order = orderOp.get();
+            order.setDelivered(true);
+            ordersRepository.save(order);
+        }
+    }
+
+    public List<DeliveryOrderDto> getAllDeliveryOrdersForWarehouse(String warehouseName, boolean delivered) {
+        var wsOp = warehouseRepository.findByName(warehouseName);
+        List<DeliveryOrderDto> res = new ArrayList<>();
+        if (wsOp.isPresent()) {
+            var warehouse= wsOp.get();
+            for (var store: warehouse.getServedStores()) {
+                for (var order : ordersRepository.findByStore(store)){
+                    if (order.isDelivered() == delivered)
+                        res.add(new DeliveryOrderDto(order));
+                }
+            }
+
+        }
+        return res;
     }
 
 }

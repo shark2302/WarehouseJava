@@ -36,6 +36,7 @@ public class StoreService {
     @Autowired
     private SalePackageRepository salePackageRepository;
 
+
     public void save(StoreDto storeDto) {
         var wsOptional = warehouseRepository.findByName(storeDto.getWarehouse().getName());
         wsOptional.ifPresent(warehouse -> storeRepository.save(new Store(storeDto.getName(), warehouse)));
@@ -73,14 +74,16 @@ public class StoreService {
         }
     }
 
-    public List<DeliveryOrderDto> getAllDeliveryOrdersForStore(String storeName) {
+    public List<DeliveryOrderDto> getAllDeliveryOrdersForStore(String storeName, boolean delivered) {
         var storeOp = storeRepository.findByName(storeName);
         List<DeliveryOrderDto> res = new ArrayList<>();
         if(storeOp.isPresent()) {
             for (var order: ordersRepository.findByStore(storeOp.get())) {
-                res.add(new DeliveryOrderDto(order));
+                if(order.isDelivered() == delivered)
+                    res.add(new DeliveryOrderDto(order));
             }
         }
         return res;
     }
+
 }
