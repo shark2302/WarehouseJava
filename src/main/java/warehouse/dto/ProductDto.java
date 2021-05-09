@@ -7,8 +7,6 @@ import java.util.UUID;
 
 public class ProductDto {
 
-    private UUID uid = UUID.randomUUID();
-
     private String name;
 
     private Double price;
@@ -51,32 +49,11 @@ public class ProductDto {
         this.shelfLife = shelfLife;
     }
 
-    public UUID getUid() {
-        return uid;
-    }
-
-    public void setUid(UUID uid) {
-        this.uid = uid;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProductDto productDto = (ProductDto) o;
-        return Objects.equals(uid, productDto.uid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(uid);
-    }
 
     @Override
     public String toString() {
         return "Product{" +
-                "uid=" + uid +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", price=" + price +
                 ", shelfLife=" + shelfLife +
                 '}';

@@ -3,6 +3,8 @@ package warehouse;
 import warehouse.component.DumbComponent;
 import warehouse.config.ApplicationConfig;
 import warehouse.controller.*;
+import warehouse.dto.ProductDto;
+import warehouse.dto.SalePackageDto;
 import warehouse.repository.ProductRepository;
 import warehouse.service.DumbService;
 import org.springframework.context.ApplicationContext;
@@ -10,6 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import warehouse.service.ProductService;
+import warehouse.service.SalePackageService;
 
 import java.util.Scanner;
 
@@ -43,11 +46,10 @@ public class Application {
             }else break;
         }*/
         ProductService s = context.getBean(ProductService.class);
-        var i = s.get("Milk");
-        s.delete(1);
-        for (var p: s.listAll()) {
-            System.out.println(p);
-        }
+        SalePackageService sp = context.getBean(SalePackageService.class);
+        //sp.save(new SalePackageDto(10, new ProductDto("Apple", 2d, 30), 30));
+        var pack = sp.get(1);
+        System.out.println(pack.getProductDto());
     }
 
 }

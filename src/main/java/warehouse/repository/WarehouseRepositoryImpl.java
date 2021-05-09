@@ -18,11 +18,11 @@ public class WarehouseRepositoryImpl implements WarehouseRepository{
     @Autowired
     private SalePackageRepository salePackageRepository;
 
-    @PostConstruct
+   /* @PostConstruct
     private void init() {
         data.add(new WarehouseDto(salePackageRepository.findAll(), storeRepository.findAll(), 16));
     }
-
+*/
 
     @Override
     public List<WarehouseDto> findAll() {

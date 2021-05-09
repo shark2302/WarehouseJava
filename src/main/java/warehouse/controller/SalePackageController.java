@@ -40,7 +40,7 @@ public class SalePackageController {
             int count = sc.nextInt();
             ProductDto[] productDtoArr = new ProductDto[count];
             Arrays.fill(productDtoArr, product);
-            salePackageService.save(new SalePackageDto((new Date()).getDay(), Arrays.asList(productDtoArr)));
+            //salePackageService.save(new SalePackageDto((new Date()).getDay(), Arrays.asList(productDtoArr)));
         }
         if (select == 3) {
             var salePackages = salePackageService.listAll();
@@ -49,7 +49,7 @@ public class SalePackageController {
                 System.out.println(i + ". " + salePackages.get(i));
             }
             int choice = sc.nextInt();
-            salePackageService.delete(salePackages.get(choice).getUid());
+            //salePackageService.delete(salePackages.get(choice).getUid());
         }
     }
 }

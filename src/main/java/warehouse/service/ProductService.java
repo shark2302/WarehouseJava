@@ -44,6 +44,13 @@ public class ProductService {
         return result;
     }
 
+    public ProductDto get(String name, Double price) {
+        Optional<Product> productOptional = productRepository.findByNameAndPrice(name, price);
+
+        return productOptional.map(ProductDto::new).orElse(null);
+    }
+
+
     public void delete(Integer id) {
         productRepository.deleteById(id);
     }

@@ -1,5 +1,7 @@
 package warehouse.model;
 
+import warehouse.dto.ProductDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -27,6 +29,7 @@ public class Product {
         this.price = price;
         this.shelfLife = shelfLife;
     }
+
 
     public Integer getId() {
         return id;

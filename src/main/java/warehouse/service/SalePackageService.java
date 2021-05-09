@@ -1,11 +1,17 @@
 package warehouse.service;
 
+import warehouse.dto.ProductDto;
 import warehouse.dto.SalePackageDto;
-import warehouse.repository.SalePackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import warehouse.model.Product;
+import warehouse.model.SalePackage;
+import warehouse.repository.ProductRepository;
+import warehouse.repository.SalePackageRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -14,19 +20,32 @@ public class SalePackageService {
     @Autowired
     private SalePackageRepository salePackageRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     public void save(SalePackageDto salePackageDto) {
-        salePackageRepository.save(salePackageDto);
+        var productFromDb = productRepository.findByNameAndPrice(salePackageDto.getProductDto().getName(), salePackageDto.getProductDto().getPrice());
+        salePackageRepository.save(new SalePackage(
+        salePackageDto.getCreateDate(), salePackageDto.getCount(), productFromDb.get()));
     }
 
     public List<SalePackageDto> listAll() {
-        return salePackageRepository.findAll();
+        List<SalePackageDto> res = new ArrayList<>();
+
+        for (var sp: salePackageRepository.findAll()) {
+            res.add(new SalePackageDto(sp));
+        }
+        return res;
     }
 
-    public SalePackageDto get(UUID id) {
-        return salePackageRepository.findByUid(id);
+    public SalePackageDto get(Integer id) {
+
+        Optional<SalePackage> spOptional = salePackageRepository.findById(id);
+
+        return spOptional.map(SalePackageDto::new).orElse(null);
     }
 
-    public void delete(UUID id) {
-        salePackageRepository.delete(id);
+    public void delete(Integer id) {
+        salePackageRepository.deleteById(id);
     }
 }

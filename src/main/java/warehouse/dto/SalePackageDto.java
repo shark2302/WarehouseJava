@@ -1,19 +1,29 @@
 package warehouse.dto;
 
+import warehouse.model.SalePackage;
+
 import java.util.List;
 import java.util.UUID;
 
 public class SalePackageDto {
 
-    private UUID uid = UUID.randomUUID();
 
     private Integer createDate;
 
-    private List<ProductDto> productDtos;
+    private ProductDto productDto;
 
-    public SalePackageDto(Integer createDate, List<ProductDto> productDtos) {
+    private Integer count;
+
+    public SalePackageDto(Integer createDate, ProductDto productDto, Integer count) {
         this.createDate = createDate;
-        this.productDtos = productDtos;
+        this.productDto = productDto;
+        this.count = count;
+    }
+
+    public SalePackageDto(SalePackage salePackage) {
+        this.createDate = salePackage.getCreateDate();
+        this.productDto = new ProductDto(salePackage.getProduct());
+        this.count = salePackage.getCount();
     }
 
     public Integer getCreateDate() {
@@ -24,29 +34,28 @@ public class SalePackageDto {
         this.createDate = createDate;
     }
 
-    public List<ProductDto> getProducts() {
-        return productDtos;
+    public ProductDto getProductDto() {
+        return productDto;
     }
 
-    public void setProducts(List<ProductDto> productDtos) {
-        this.productDtos = productDtos;
+    public void setProductDto(ProductDto productDto) {
+        this.productDto = productDto;
     }
 
-    public UUID getUid() {
-        return uid;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setUid(UUID uid) {
-        this.uid = uid;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     @Override
     public String toString() {
         return "SalePackage{" +
-                "uid=" + uid +
-                ", createDate=" + createDate +
-                ", product=" + productDtos.get(0).getName() +
-                ", productsCount=" + productDtos.size() +
+                "createDate=" + createDate +
+                ", product=" + productDto.getName() +
+                ", productsCount=" + count +
                 '}';
     }
 }
