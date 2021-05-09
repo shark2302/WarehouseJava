@@ -20,7 +20,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackageClasses = {ProductRepository.class})
-public class JpaConfig {
+public class AppConfig {
 
     @Bean
     public DataSource dataSource() {
@@ -66,7 +66,7 @@ public class JpaConfig {
         hibernateProperties.setProperty(
                 "hibernate.dialect", "org.hibernate.dialect.PostgreSQL94Dialect");
         hibernateProperties.setProperty(
-                "hibernate.show_sql", "true");
+                "hibernate.show_sql", "false");
         hibernateProperties.setProperty(
                 "hibernate.format_sql", "true");
         hibernateProperties.setProperty(

@@ -1,10 +1,8 @@
 package warehouse;
 
 import warehouse.component.DumbComponent;
-import warehouse.config.ApplicationConfig;
+import warehouse.config.AppConfig;
 import warehouse.controller.*;
-import warehouse.dto.ProductDto;
-import warehouse.dto.SalePackageDto;
 import warehouse.repository.ProductRepository;
 import warehouse.service.DumbService;
 import org.springframework.context.ApplicationContext;
@@ -14,10 +12,8 @@ import org.springframework.context.annotation.Configuration;
 import warehouse.service.ProductService;
 import warehouse.service.SalePackageService;
 
-import java.util.Scanner;
-
 @Configuration
-@ComponentScan(/*basePackages = "di2"*/ basePackageClasses = {DumbService.class, ApplicationConfig.class,
+@ComponentScan(/*basePackages = "di2"*/ basePackageClasses = {DumbService.class, AppConfig.class,
         DumbComponent.class, ProductRepository.class, DumbController.class})
 public class Application {
     public static void main(String[] args) {
