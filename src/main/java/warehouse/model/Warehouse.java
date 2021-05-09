@@ -20,6 +20,9 @@ public class Warehouse {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "warehouse")
     private List<SalePackage> salePackages;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "warehouse")
+    private List<Store> servedStores;
+
     public Warehouse() {
     }
 
@@ -58,5 +61,13 @@ public class Warehouse {
 
     public void setSalePackages(List<SalePackage> salePackages) {
         this.salePackages = salePackages;
+    }
+
+    public List<Store> getServedStores() {
+        return servedStores;
+    }
+
+    public void setServedStores(List<Store> servedStores) {
+        this.servedStores = servedStores;
     }
 }

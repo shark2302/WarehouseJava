@@ -35,10 +35,17 @@ public class WarehouseDto {
         this.name = warehouse.getName();
         this.capacity = warehouse.getCapacity();
         List<SalePackageDto> salePackageDtos = new ArrayList<>();
+
         for (var sp: warehouse.getSalePackages()) {
             salePackageDtos.add(new SalePackageDto(sp));
         }
         this.packages = salePackageDtos;
+
+        List<StoreDto> storesDtos = new ArrayList<>();
+        for (var sp: warehouse.getServedStores()) {
+            storesDtos.add(new StoreDto(sp.getName(), this));
+        }
+        this.servedStoreDtos = storesDtos;
     }
 
     public String getName() {

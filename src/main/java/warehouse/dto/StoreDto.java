@@ -1,6 +1,6 @@
 package warehouse.dto;
 
-import java.util.UUID;
+import warehouse.model.Store;
 
 public class StoreDto {
 
@@ -11,6 +11,11 @@ public class StoreDto {
     public StoreDto(String name, WarehouseDto warehouseDto) {
         this.name = name;
         this.warehouseDto = warehouseDto;
+    }
+
+    public StoreDto(Store store) {
+        this.name = store.getName();
+        this.warehouseDto = new WarehouseDto(store.getWarehouse());
     }
 
     public String getName() {

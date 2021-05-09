@@ -1,19 +1,12 @@
 package warehouse.repository;
 
-import warehouse.dto.StoreDto;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import warehouse.model.Store;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.Optional;
 
-public interface StoreRepository {
-
-    List<StoreDto> findAll();
-
-    List<StoreDto> findByName(String name);
-
-    StoreDto findByUid(UUID uid);
-
-    void save(StoreDto storeDto);
-
-    void delete(UUID uid);
+@Repository
+public interface StoreRepository extends CrudRepository<Store, Integer> {
+    Optional<Store> findByName(String name);
 }
