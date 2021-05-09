@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 @Controller
 public class StoreController {
-
+/*
     @Autowired
     private StoreService storeService;
 
@@ -79,5 +79,5 @@ public class StoreController {
                 }
             }
         }
-    }
+    }*/
 }

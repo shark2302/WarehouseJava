@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 @Controller
 public class WarehouseController {
-
+/*
     @Autowired
     private WarehouseService warehouseService;
 
@@ -41,7 +41,7 @@ public class WarehouseController {
         else if (select == 2) {
             System.out.println("Enter capacity of warehouse :");
             int capacity = sc.nextInt();
-            warehouseService.save(new WarehouseDto(salePackageService.listAll(), storeService.listAll(), capacity));
+            warehouseService.save(new WarehouseDto("", salePackageService.listAll(), storeService.listAll(), capacity));
         }
         else if (select == 3) {
             System.out.println("Choose warehouse to get : ");
@@ -96,5 +96,5 @@ public class WarehouseController {
                 currentWarehouse.getPackages().add(packages.get(packSelect));
             }
         }
-    }
+    }*/
 }

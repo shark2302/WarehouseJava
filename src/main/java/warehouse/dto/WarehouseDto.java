@@ -1,11 +1,14 @@
 package warehouse.dto;
 
+import warehouse.model.Warehouse;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class WarehouseDto {
 
-    private UUID uid = UUID.randomUUID();
+    private String name;
 
     private List<SalePackageDto> packages;
 
@@ -13,7 +16,8 @@ public class WarehouseDto {
 
     private int capacity;
 
-    public WarehouseDto(List<SalePackageDto> packages, List<StoreDto> servedStoreDtos, int capacity) {
+    public WarehouseDto(String name, List<SalePackageDto> packages, List<StoreDto> servedStoreDtos, int capacity) {
+        this.name = name;
         this.packages = packages;
         this.servedStoreDtos = servedStoreDtos;
         this.capacity = capacity;
@@ -22,12 +26,27 @@ public class WarehouseDto {
         }
     }
 
-    public UUID getUid() {
-        return uid;
+    public WarehouseDto(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
     }
 
-    public void setUid(UUID uid) {
-        this.uid = uid;
+    public WarehouseDto(Warehouse warehouse) {
+        this.name = warehouse.getName();
+        this.capacity = warehouse.getCapacity();
+        List<SalePackageDto> salePackageDtos = new ArrayList<>();
+        for (var sp: warehouse.getSalePackages()) {
+            salePackageDtos.add(new SalePackageDto(sp));
+        }
+        this.packages = salePackageDtos;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<SalePackageDto> getPackages() {
@@ -66,10 +85,10 @@ public class WarehouseDto {
 
     @Override
     public String toString() {
-        return "Warehouse{" +
-                "uid=" + uid +
+        return "WarehouseDto{" +
+                "name='" + name + '\'' +
                 ", packages=" + packages +
-                ", servedStores=" + servedStoreDtos +
+                ", servedStoreDtos=" + servedStoreDtos +
                 ", capacity=" + capacity +
                 '}';
     }

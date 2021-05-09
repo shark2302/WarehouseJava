@@ -2,8 +2,6 @@ package warehouse.service;
 
 import warehouse.dto.DeliveryOrderDto;
 import warehouse.dto.StoreDto;
-import warehouse.dto.WarehouseDto;
-import warehouse.repository.DeliveryOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class DeliveryOrderService {
-
+/*
     @Autowired
     private DeliveryOrderRepository deliveryOrderRepository;
 
@@ -46,16 +44,5 @@ public class DeliveryOrderService {
         return deliveryOrderRepository.findNotDelivered().stream().filter(p -> Objects.equals(storeDto.getUid(), p.getStore().getUid())).collect(Collectors.toList());
     }
 
-    public List<DeliveryOrderDto> getAllForWarehouse(WarehouseDto warehouseDto) {
-        return deliveryOrderRepository.findByStoreId(warehouseDto.getUid());
-    }
-
-    public List<DeliveryOrderDto> getDeliveredForWarehouse(WarehouseDto warehouseDto) {
-        return deliveryOrderRepository.findDelivered().stream().filter(p -> Objects.equals(warehouseDto.getUid(), p.getWarehouse().getUid())).collect(Collectors.toList());
-    }
-
-    public List<DeliveryOrderDto> getNotDeliveredForWarehouse(WarehouseDto warehouseDto) {
-        return deliveryOrderRepository.findNotDelivered().stream().filter(p -> Objects.equals(warehouseDto.getUid(), p.getWarehouse().getUid())).collect(Collectors.toList());
-    }
-
+*/
 }

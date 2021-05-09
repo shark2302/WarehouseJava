@@ -9,25 +9,24 @@ import warehouse.model.SalePackage;
 import warehouse.repository.ProductRepository;
 import warehouse.repository.SalePackageRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Transactional
 @Service
 public class SalePackageService {
 
     @Autowired
     private SalePackageRepository salePackageRepository;
 
-    @Autowired
-    private ProductRepository productRepository;
-
-    public void save(SalePackageDto salePackageDto) {
+    /*public void save(SalePackageDto salePackageDto) {
         var productFromDb = productRepository.findByNameAndPrice(salePackageDto.getProductDto().getName(), salePackageDto.getProductDto().getPrice());
         salePackageRepository.save(new SalePackage(
         salePackageDto.getCreateDate(), salePackageDto.getCount(), productFromDb.get()));
-    }
+    }*/
 
     public List<SalePackageDto> listAll() {
         List<SalePackageDto> res = new ArrayList<>();

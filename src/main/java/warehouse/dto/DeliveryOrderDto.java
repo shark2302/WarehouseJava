@@ -67,7 +67,6 @@ public class DeliveryOrderDto {
     public String toString() {
         return "DeliveryOrder{" +
                 "store=" + storeDto.getName() +
-                ", warehouse=" + warehouseDto.getUid() +
                 ", salePackages=" + salePackageDtos +
                 '}';
     }

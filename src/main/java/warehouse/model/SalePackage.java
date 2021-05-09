@@ -16,17 +16,22 @@ public class SalePackage {
     @Column(name = "count")
     private Integer count;
 
-    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
+    @OneToOne(fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
     @JoinColumn(name = "product_id")
     private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "warehouse_id")
+    private Warehouse warehouse;
 
     public SalePackage() {
     }
 
-    public SalePackage(Integer createDate, Integer count, Product product) {
+    public SalePackage(Integer createDate, Integer count, Product product, Warehouse warehouse) {
         this.createDate = createDate;
         this.count = count;
         this.product = product;
+        this.warehouse = warehouse;
     }
 
     public Integer getId() {
@@ -59,6 +64,14 @@ public class SalePackage {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 
     @Override
