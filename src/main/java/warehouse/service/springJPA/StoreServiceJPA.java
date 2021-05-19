@@ -40,12 +40,13 @@ public class StoreServiceJPA {
 
     public StoreDto get(Integer id) {
         Store store = em.find(Store.class, id);
-        return new StoreDto(store);
+        return store != null ? new StoreDto(store) : null;
     }
 
     public void delete(Integer id) {
         Store store = em.find(Store.class, id);
-        em.remove(store);
+        if(store != null)
+            em.remove(store);
     }
 
     public void createDeliveryOrder(String storeName, Integer salePackageId) {

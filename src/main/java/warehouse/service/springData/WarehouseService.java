@@ -68,8 +68,8 @@ public class WarehouseService {
             var productFromDb = productRepository.findByNameAndPrice(salePackageDto.getProductDto().getName(),
                     salePackageDto.getProductDto().getPrice());
 
-            salePackageRepository.save(new SalePackage(
-                    salePackageDto.getCreateDate(), salePackageDto.getCount(), productFromDb.get(), warehouse.get()));
+            productFromDb.ifPresent(product -> salePackageRepository.save(new SalePackage(
+                    salePackageDto.getCreateDate(), salePackageDto.getCount(), product, warehouse.get())));
         }
     }
 

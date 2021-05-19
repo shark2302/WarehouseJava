@@ -36,7 +36,7 @@ public class ProductServiceJPA{
 
     public ProductDto get(Integer id) {
         Product product = em.find(Product.class, id);
-        return new ProductDto(product.getName(), product.getPrice(), product.getShelfLife());
+        return product != null ? new ProductDto(product.getName(), product.getPrice(), product.getShelfLife()) : null;
     }
 
     public List<ProductDto> get(String name) {
@@ -55,12 +55,13 @@ public class ProductServiceJPA{
                 "select product from Product product where product.name = :name and product.price = :price", Product.class).
                 setParameter("name", name).setParameter("price", price);
         Product p = products.getSingleResult();
-        return new ProductDto(p.getName(), p.getPrice(), p.getShelfLife());
+        return p != null ? new ProductDto(p.getName(), p.getPrice(), p.getShelfLife()) : null;
     }
 
 
     public void delete(Integer id) {
         Product product = em.find(Product.class, id);
-        em.remove(product);
+        if(product != null)
+            em.remove(product);
     }
 }
