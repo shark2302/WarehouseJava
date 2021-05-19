@@ -1,4 +1,5 @@
-package warehouse.service;
+package warehouse.service.springData;
+
 
 import warehouse.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +10,15 @@ import warehouse.repository.ProductRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
-@Service
-public class ProductService {
+
+@Service("springData")
+public class ProductService{
 
     @Autowired
     private ProductRepository productRepository;
 
-    public void save(ProductDto productDto) {
+    public void save(ProductDto productDto){
 
         productRepository.save(new Product(productDto.getName(), productDto.getPrice(), productDto.getShelfLife()));
     }

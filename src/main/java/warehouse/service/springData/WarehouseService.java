@@ -1,4 +1,4 @@
-package warehouse.service;
+package warehouse.service.springData;
 
 import warehouse.dto.DeliveryOrderDto;
 import warehouse.dto.SalePackageDto;
