@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service("jpa")
+@Service
 @Transactional
 public class ProductServiceJPA{
 
